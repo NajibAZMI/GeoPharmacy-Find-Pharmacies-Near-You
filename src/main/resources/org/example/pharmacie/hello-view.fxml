@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.web.WebView?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23" fx:controller="org.example.pharmacie.HelloController">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23" fx:controller="org.example.pharmacie.HelloController"  style="-fx-background-color: #49E38F;">
 
     <!-- Barre en haut avec un champ de recherche et des boutons -->
     <top>
@@ -39,6 +39,7 @@
                         <Label fx:id="pharmacyDistanceLabel" text="Distance : " style="-fx-font-size: 14px;" />
                         <Label fx:id="pharmacyLatLabel" text="Latitude : " style="-fx-font-size: 14px;" />
                         <Label fx:id="pharmacyLonLabel" text="Longitude : " style="-fx-font-size: 14px;" />
+                        <Label fx:id="pharmacyAdressLabel" text="Longitude : " style="-fx-font-size: 14px;" />
                     </VBox>
                 </VBox>
                 <VBox spacing="10" prefHeight="300">

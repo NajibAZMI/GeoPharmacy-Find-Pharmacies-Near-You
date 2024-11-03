@@ -39,6 +39,8 @@ public class HelloController {
     @FXML
     private Label pharmacyLonLabel;        // Nouveau label pour afficher la longitude
     @FXML
+    private Label pharmacyAdressLabel;
+    @FXML
     private WebView mapWebView;
     private static final int EARTH_RADIUS = 6371;
     private final HttpClient httpClient = HttpClient.newHttpClient();
@@ -56,6 +58,37 @@ public class HelloController {
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
         return EARTH_RADIUS * c; // Distance en kilomètres
+    }
+    private String getAddressFromCoordinates(double lat, double lon) {
+        String apiUrl = "https://nominatim.openstreetmap.org/reverse?lat=" + lat + "&lon=" + lon + "&format=json";
+
+        try {
+            URL url = new URL(apiUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String inputLine;
+            StringBuilder content = new StringBuilder();
+            while ((inputLine = in.readLine()) != null) {
+                content.append(inputLine);
+            }
+
+            // Fermez les flux
+            in.close();
+            conn.disconnect();
+
+            // Traitement de la réponse JSON
+            JSONObject json = new JSONObject(content.toString());
+            if (json.has("display_name")) {
+                return json.getString("display_name");
+            } else {
+                return "Adresse non trouvée";
+            }
+
+        } catch (Exception e) {
+            return "Erreur lors de la récupération de l'adresse : " + e.getMessage();
+        }
     }
 
     @FXML
@@ -183,7 +216,7 @@ public class HelloController {
                 pharmacyDistanceLabel.setText("Distance : " + String.format("%.2f km", calculateDistance(userLat, userLon, lat, lon)));
                 pharmacyLatLabel.setText("Latitude : " + lat);
                 pharmacyLonLabel.setText("Longitude : " + lon);
-
+                pharmacyAdressLabel.setText("Adresse: " + getAddressFromCoordinates(lat,lon));
                 loadMap(lat, lon);
             }
         }
