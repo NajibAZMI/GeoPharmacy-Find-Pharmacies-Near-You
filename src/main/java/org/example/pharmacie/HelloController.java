@@ -8,7 +8,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.tobiasz.geo.GeoLocation;
+
 public class HelloController {
 
     @FXML
@@ -20,19 +20,7 @@ public class HelloController {
     private final HttpClient httpClient = HttpClient.newHttpClient();
     @FXML
     private void GPS(){
-        GeoLocation geoLocation = new GeoLocation();
-        geoLocation.setLocationListener(location -> {
-            if (location != null) {
-                double latitude = location.getLatitude();
-                double longitude = location.getLongitude();
-                String locationCoords = latitude + "," + longitude;
-                fetchPharmacies(locationCoords);
-            } else {
-                pharmacyListView.getItems().add("Impossible de récupérer les coordonnées GPS.");
-            }
-        });
 
-        geoLocation.start();
     }
     @FXML
     private void handleSearch() {

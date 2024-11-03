@@ -48,11 +48,7 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.github.tobiasz1</groupId>
-            <artifactId>GeoLocation</artifactId>
-            <version>1.0.0</version>
-        </dependency>
+
     </dependencies>
 
     <build>
