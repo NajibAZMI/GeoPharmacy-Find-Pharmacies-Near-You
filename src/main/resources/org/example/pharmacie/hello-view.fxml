@@ -5,9 +5,9 @@
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.pharmacie.HelloController">
     <top>
         <HBox spacing="10" alignment="CENTER">
-            <TextField fx:id="locationField" promptText="Entrez une localisation"/>
-            <Button text="Rechercher" onAction="#handleSearch"/>
-            <Button text="Rechercher" onAction="#GPS"/>
+            <TextField fx:id="locationField" promptText="Entrez une localisation" prefWidth="500" prefHeight="40"/>
+            <Button text="Rechercher" onAction="#handleSearch" prefHeight="40"/>
+            <Button text="GPS" onAction="#GPS" prefHeight="40"/>
         </HBox>
     </top>
     <center>
