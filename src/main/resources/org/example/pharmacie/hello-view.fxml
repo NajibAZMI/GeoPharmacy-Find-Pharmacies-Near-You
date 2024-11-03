@@ -1,17 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.pharmacie.HelloController">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.web.WebView?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23" fx:controller="org.example.pharmacie.HelloController">
+
+    <!-- Barre en haut avec un champ de recherche et des boutons -->
     <top>
-        <HBox spacing="10" alignment="CENTER">
-            <TextField fx:id="locationField" promptText="Entrez une localisation" prefWidth="500" prefHeight="40"/>
-            <Button text="Rechercher" onAction="#handleSearch" prefHeight="40"/>
-            <Button text="GPS" onAction="#GPS" prefHeight="40"/>
+        <HBox alignment="CENTER" spacing="10" style="-fx-padding: 10;">
+            <TextField fx:id="locationField" prefHeight="40" prefWidth="500" promptText="Entrez une localisation" />
+            <Button onAction="#handleSearch" prefHeight="40" text="Rechercher" />
+            <Button onAction="#GPS" prefHeight="40" text="GPS" />
         </HBox>
     </top>
+
+    <!-- Corps principal divisé en deux parties avec HBox -->
     <center>
-        <!-- Liste pour afficher les résultats des pharmacies -->
-        <ListView fx:id="pharmacyListView"/>
+        <HBox spacing="20" style="-fx-padding: 10;">
+            <!-- Section de gauche -->
+            <VBox spacing="10" style="-fx-padding: 10;" prefHeight="40" prefWidth="650">
+                <Label text="Liste des Pharmacies" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                <ListView fx:id="pharmacyListView" prefHeight="600" onMouseClicked="#displayPharmacyDetails"/>
+            </VBox>
+
+            <!-- Section de droite -->
+            <VBox spacing="10" style="-fx-padding: 10;" prefHeight="40" prefWidth="500">
+
+                <VBox spacing="10" style="-fx-padding: 10;" prefHeight="300">
+                    <Label text="Pharmacies Sélectionnées" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                    <VBox spacing="10" style="-fx-padding: 10; -fx-background-color: white;">
+                        <Label fx:id="pharmacyNameLabel" text="Nom : " style="-fx-font-size: 14px;" />
+                        <Label fx:id="pharmacyDistanceLabel" text="Distance : " style="-fx-font-size: 14px;" />
+                        <Label fx:id="pharmacyLatLabel" text="Latitude : " style="-fx-font-size: 14px;" />
+                        <Label fx:id="pharmacyLonLabel" text="Longitude : " style="-fx-font-size: 14px;" />
+                    </VBox>
+                </VBox>
+                <VBox spacing="10" prefHeight="300">
+                    <Label fx:id="map" text="Carte des Pharmacies" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                    <WebView fx:id="mapWebView" prefHeight="200" />
+                </VBox>
+            </VBox>
+        </HBox>
     </center>
+
 </BorderPane>

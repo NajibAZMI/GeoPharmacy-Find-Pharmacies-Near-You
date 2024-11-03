@@ -15,7 +15,7 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
 
         // Créer la scène
-        Scene scene = new Scene(fxmlLoader.load(),1600,700);
+        Scene scene = new Scene(fxmlLoader.load(),1200,640);
 
         // Configurer et afficher la fenêtre principale
         primaryStage.setScene(scene);
